@@ -24,6 +24,22 @@ namespace Gacha.Win
             MessageBox.Show("本次抽卡结果：" + rare + "\n"
                 + "离必出SSR还剩" + core.gachaCount + "次"
                 , "结果", MessageBoxButtons.OK);
+            }
+            else if (gachaResult >= basicRate && gachaResult <= 5 + basicRate)
+            {
+                basicRate++;
+                MessageBox.Show("你抽中了 SR 1张\n" +
+                    "这一次抽到SSR的概率为" + basicRate + "%", "结果");
+                basicRate--;
+            }
+            else
+            {
+                basicRate++;
+                MessageBox.Show("你抽中了 R 1张\n" +
+                    "这一次抽到SSR的概率为" + basicRate + "%", "结果");
+                basicRate--;
+            }
+            counting++;
         }
 
         private void btnTenGacha_Click(object sender, EventArgs e)
@@ -39,11 +55,11 @@ namespace Gacha.Win
                     guarantCount++;
                 }
             }
-
+            
             if(guarantCount == 10) {
                 gachaResult[9] = core.TakeGacha("SR");
             }
-            
+
             string rare = string.Join(" ", gachaResult);
 
             MessageBox.Show("本次抽卡结果：" + rare + "\n"
